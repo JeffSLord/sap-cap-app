@@ -1,22 +1,45 @@
-namespace my.bookshop;
-using { User, Country, managed } from '@sap/cds/common';
+namespace Tests;
 
-entity Books {
-  key ID : Integer;
-  title  : localized String;
-  author : Association to Authors;
-  stock  : Integer;
-}
-
-entity Authors {
-  key ID : Integer;
-  name   : String;
-  books  : Association to many Books on books.author = $self;
-}
-
-entity Orders : managed {
-  key ID  : UUID;
-  book    : Association to Books;
-  country : Country;
-  amount  : Integer;
+context Tables{
+	entity Students {
+	    key ID     : Integer not null;
+	    NAME   : String(100);
+	    SITE   : String(100);
+	    GENDER : String(100);
+	    AGE    : String(100);
+	    SCORE  : Double;
+	}
+	entity Students2 {
+	    key ID     : Integer not null;
+	    NAME   : String(100);
+	    SITE   : String(100);
+	    GENDER : String(100);
+	    AGE    : String(100);
+	    SCORE  : Double;
+	}
+	entity Students3 {
+	    key ID     : Integer not null;
+	    NAME   : String(100);
+	    SITE   : String(100);
+	    GENDER : String(100);
+	    AGE    : String(100);
+	    SCORE  : Double;
+	}
+	
+	@cds.persistence.exists
+	entity SAIRPORT {
+		key MANDT : String(3);
+		key ID : String(3);
+		NAME : String(25);
+		TIME_ZONE: String(6);
+	}
+	@cds.persistence.exists
+	entity CV_STUDENTS {
+		key ID     : Integer not null;
+	    NAME   : String(100);
+	    SITE   : String(100);
+	    GENDER : String(100);
+	    AGE    : String(100);
+	    SCORE  : Double;
+	}
 }

@@ -3,7 +3,7 @@
     "description": "Generated from ../package.json, do not change!",
     "version": "1.0.0",
     "dependencies": {
-        "@sap/cds": "^3.34.2",
+        "@sap/cds": "3.21.x",
         "express": "^4.17.1",
         "@sap/hana-client": "^2.4.196"
     },

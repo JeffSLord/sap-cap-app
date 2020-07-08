@@ -1,7 +1,7 @@
-using { my.bookshop, sap.common } from '../db/data-model';
-
-service CatalogService {
-  entity Books @readonly as projection on bookshop.Books;
-  entity Authors @readonly as projection on bookshop.Authors;
-  entity Orders @insertonly as projection on bookshop.Orders;
-}
+using Tests.Tables as Tables from '../db/data-model';
+service exposed {
+  entity Students as projection on Tables.Students;
+  entity Students2 @readonly as projection on Tables.Students2;
+  entity Airport as projection on Tables.SAIRPORT;
+  entity CV_Students as projection on Tables.CV_STUDENTS;
+};
