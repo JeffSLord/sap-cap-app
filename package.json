@@ -25,10 +25,6 @@
 					"db",
 					"srv"
 				]
-			},
-			"NorthWind": {
-				"kind": "odata",
-				"model": "srv/external/NorthWind"
 			}
 		},
 		"odata": {
