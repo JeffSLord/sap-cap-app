@@ -22,7 +22,14 @@
             "db": {
                 "kind": "hana",
                 "model": "gen/csn.json"
-            }
+            },
+			"NorthWind": {
+				"kind": "odata",
+				"model": "external/NorthWind",
+				"credentials": {
+					"url": "https://services.odata.org/Experimental/OData/OData.svc"
+				}
+			}
         }
     }
 }
