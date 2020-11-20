@@ -14,18 +14,19 @@ context Tables{
 	
 	entity StudentsView  as SELECT FROM Students; // basic view on top of basic table
 	
-	entity MyProduct{ // table with association to external 
+	entity MyProduct{ // table with association to external. expand not functioning as expected
 		key ID : Integer not null;
 		NAME: String(100);
 		DETAIL: String(100);
 		PRODUCT_ID : Integer;
 		PRODUCT: Association to NorthWindProduct on PRODUCT.ID = PRODUCT_ID;
+		STUDENT: Association to Students on STUDENT.ID = PRODUCT_ID;
 	}
 	
-	entity NorthWindProduct as select from external.Products{
-		*;
-		Test: Integer;
-	}
+	// @cds.persistence.view
+	entity NorthWindProduct as select from external.Products;
+	
+	// entity NorthWindProductProjection as projection on NorthWindProduct;
 
 	@cds.persistence.exists
 	entity SAIRPORT { // connect to cross container table

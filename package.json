@@ -5,15 +5,19 @@
 	"repository": "<Add your repository here>",
 	"license": "UNLICENSED",
 	"dependencies": {
-		"@sap/cds": "3.21.x",
+		"@sap/cds": "^4.3.0",
 		"express": "^4.17.1",
 		"@sap/hana-client": "^2.4.196",
 		"passport": "latest",
 		"@sap/xssec": "latest",
-		"@sap/audit-logging": "latest"
+		"@sap/audit-logging": "latest",
+		"@sap/xsenv": "latest"
+	},
+	"devDependencies": {
+		"@sap/cds-dk": "^3.2.0"
 	},
 	"engines": {
-		"node": "^10 || ^12"
+		"node": "^12"
 	},
 	"scripts": {
 		"build": "cds build/all --clean",
@@ -31,6 +35,11 @@
 			},
 			"uaa": {
 				"kind": "xsuaa"
+			}
+		},
+		"auth": {
+			"passport": {
+				"strategy": "JWT"
 			}
 		},
 		"odata": {

@@ -3,15 +3,16 @@
 	"description": "Generated from ../package.json, do not change!",
 	"version": "1.0.0",
 	"dependencies": {
-		"@sap/cds": "3.21.x",
+		"@sap/cds": "^4.3.0",
 		"express": "^4.17.1",
 		"@sap/hana-client": "^2.4.196",
 		"passport": "latest",
 		"@sap/xssec": "latest",
-		"@sap/audit-logging": "latest"
+		"@sap/audit-logging": "latest",
+		"@sap/xsenv": "latest"
 	},
 	"engines": {
-		"node": "^10 || ^12"
+		"node": "^12"
 	},
 	"devDependencies": {},
 	"scripts": {
@@ -35,6 +36,11 @@
 				"credentials": {
 					"url": "https://services.odata.org/Experimental/OData/OData.svc"
 				}
+			}
+		},
+		"auth": {
+			"passport": {
+				"strategy": "JWT"
 			}
 		}
 	}

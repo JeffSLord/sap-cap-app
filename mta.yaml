@@ -30,6 +30,7 @@ modules:
     requires:
       - name: cap_demo-db-hdi-container
       - name: cap-uaa
+      - name: cap-auditlog
   - name: approuter
     type: html5
     path: approuter
@@ -56,3 +57,8 @@ resources:
     type: com.sap.xs.uaa
     parameters:
       path: xs-security.json
+  - name: cap-auditlog
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: auditlog
+      service-plan: free
