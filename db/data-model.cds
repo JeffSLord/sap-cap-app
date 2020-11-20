@@ -2,34 +2,9 @@ using { cuid } from '@sap/cds/common';
 using {NorthWind as external} from '../srv/external/NorthWind.csn';
 
 namespace Tests;
-
 context Tables{
-	entity Students {
+	entity Students { // basic table
 	    key ID     : Integer not null;
-	    NAME   : String(100);
-	    SITE   : String(100);
-	    GENDER : String(100);
-	    AGE    : String(100);
-	    SCORE  : Double;
-	}
-	entity Students2 {
-	    key ID     : Integer not null;
-	    NAME   : String(100);
-	    SITE   : String(100);
-	    GENDER : String(100);
-	    AGE    : String(100);
-	    SCORE  : Double;
-	}
-	entity Students3 {
-	    key ID     : Integer not null;
-	    NAME   : String(100);
-	    SITE   : String(100);
-	    GENDER : String(100);
-	    AGE    : String(100);
-	    SCORE  : Double;
-	}
-		entity Students4 : cuid {
-	    // key ID     : UUID;
 	    NAME   : String(100);
 	    SITE   : String(100);
 	    GENDER : String(100);
@@ -37,15 +12,30 @@ context Tables{
 	    SCORE  : Double;
 	}
 	
+	entity StudentsView  as SELECT FROM Students; // basic view on top of basic table
+	
+	entity MyProduct{ // table with association to external 
+		key ID : Integer not null;
+		NAME: String(100);
+		DETAIL: String(100);
+		PRODUCT_ID : Integer;
+		PRODUCT: Association to NorthWindProduct on PRODUCT.ID = PRODUCT_ID;
+	}
+	
+	entity NorthWindProduct as select from external.Products{
+		*;
+		Test: Integer;
+	}
+
 	@cds.persistence.exists
-	entity SAIRPORT {
+	entity SAIRPORT { // connect to cross container table
 		key MANDT : String(3);
 		key ID : String(3);
 		NAME : String(25);
 		TIME_ZONE: String(6);
 	}
 	@cds.persistence.exists
-	entity CV_STUDENTS {
+	entity CV_STUDENTS { // connect to calculation view (via synonym)
 		key ID     : Integer not null;
 	    NAME   : String(100);
 	    SITE   : String(100);

@@ -1,0 +1,12 @@
+{
+	"xsappname": "security-app",
+	"scopes": [{
+		"name": "$XSAPPNAME.READ",
+		"description": "Read data"
+	}],
+	"role-templates": [{
+		"name": "READ_ROLE",
+		"description": "Template for reading",
+		"scope-references": ["$XSAPPNAME.READ"]
+	}]
+}

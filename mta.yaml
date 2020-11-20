@@ -1,5 +1,5 @@
 ID: cap_demo
-_schema-version: "2.1"
+_schema-version: '2.1'
 version: 0.0.1
 modules:
   - name: cap_demo-db
@@ -11,18 +11,12 @@ modules:
     requires:
       - name: cap_demo-db-hdi-container
         properties:
-          TARGET_CONTAINER: ~{hdi-container-name}
-
-  
+          TARGET_CONTAINER: '~{hdi-container-name}'
       - name: cross-container-service-1
         group: SERVICE_REPLACEMENTS
-
         properties:
           key: ServiceName_1
-          service: ~{the-service-name}
-                            
-
-
+          service: '~{the-service-name}'
   - name: cap_demo-srv
     type: nodejs
     path: srv
@@ -32,19 +26,33 @@ modules:
     provides:
       - name: srv_api
         properties:
-          url: ${default-url}
+          url: '${default-url}'
     requires:
       - name: cap_demo-db-hdi-container
+      - name: cap-uaa
+  - name: approuter
+    type: html5
+    path: approuter
+    requires:
+      - name: cap-uaa
+      - name: srv_api
+        group: destinations
+        properties:
+          name: srv_api
+          url: '~{url}'
+          forwardAuthToken: true
 resources:
   - name: cap_demo-db-hdi-container
     type: com.sap.xs.hdi-container
     properties:
-      hdi-container-name: ${service-name}
-
+      hdi-container-name: '${service-name}'
   - name: cross-container-service-1
     parameters:
-       service-name: SFLIGHT
+      service-name: SFLIGHT
     properties:
-       the-service-name: ${service-name}
+      the-service-name: '${service-name}'
     type: org.cloudfoundry.existing-service
-
+  - name: cap-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      path: xs-security.json

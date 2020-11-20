@@ -1,11 +1,7 @@
 const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
-	this.on('READ', 'Products', async(req) =>{
-		console.log("user: ", req.user);
-		console.log("reqinfo: ", req.authInfo);
-		console.log("is authenticated: ", req.user.is('authenticated-user'));
-		
+	this.on('READ', 'NorthWindProduct', async(req) =>{
 		const srv = await cds.connect.to("NorthWind");
 		const {Products} = srv.entities;
 		const tx = srv.tx(req);
